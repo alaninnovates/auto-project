@@ -1,0 +1,61 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Home_Reef1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Reef1_Processor"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Processor_CoralMark1"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CoralMark1_Reef2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Reef2_CoralMark2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CoralMark2_Reef3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Reef3_CoralMark3"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "CoralMark3_Reef4"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": null,
+  "choreoAuto": false
+}
