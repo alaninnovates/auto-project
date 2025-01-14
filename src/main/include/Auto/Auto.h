@@ -21,7 +21,6 @@ public:
 
 private:
     std::vector<AutoPathSegment *> m_paths;
-    std::vector<std::string> m_pathNames = {"Home_Reef1", "Reef1_Processor", "Processor_CoralMark1", "CoralMark1_Reef3", "Reef3_CoralMark2"};
     int m_curPathIndex;
     pathplanner::PathPlannerTrajectory m_curTrajectory;
     double m_autoStart;
