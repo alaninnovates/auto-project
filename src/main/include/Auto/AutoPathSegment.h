@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <pathplanner/lib/path/PathPlannerPath.h>
 #include <pathplanner/lib/trajectory/PathPlannerTrajectory.h>

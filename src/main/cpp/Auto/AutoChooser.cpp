@@ -1,12 +1,15 @@
 #include "Auto/AutoChooser.h"
 
-AutoChooser::AutoChooser()
+AutoChooser::AutoChooser(Auto &autoObj) : m_auto{autoObj}
 {
 }
 
 void AutoChooser::ShuffleboardInit()
 {
-    AddChooser();
+    for (int i = 0; i < AutoConstants::MAX_AUTO_POSITIONS; i++)
+    {
+        AddChooser();
+    }
 }
 
 void AutoChooser::ShuffleboardPeriodic()
@@ -24,10 +27,10 @@ void AutoChooser::ShuffleboardPeriodic()
     //         m_autoChoosers.at(i).reefWidget.WithPosition(i, 100);
     //     }
     // }
-    if (m_autoChoosers.at(m_autoChoosers.size() - 1).positionChooser->GetSelected() != "None")
-    {
-        AddChooser();
-    }
+    // if (m_autoChoosers.at(m_autoChoosers.size() - 1).positionChooser->GetSelected() != "None")
+    // {
+    //     AddChooser();
+    // }
 }
 
 void AutoChooser::AddChooser()
@@ -69,4 +72,18 @@ bool AutoChooser::IsReefPosition(AutoConstants::AutoPosition position)
            position == AutoConstants::AutoPosition::REEF_J ||
            position == AutoConstants::AutoPosition::REEF_K ||
            position == AutoConstants::AutoPosition::REEF_L;
+}
+
+void AutoChooser::Build()
+{
+    for (size_t i = 0; i < m_autoChoosers.size() - 1; i++)
+    {
+        std::string pos = m_autoChoosers.at(i).positionChooser->GetSelected();
+        std::string nextPos = m_autoChoosers.at(i + 1).positionChooser->GetSelected();
+        if (nextPos == "None")
+        {
+            break;
+        }
+        m_auto.AddSegment(pos, nextPos);
+    }
 }

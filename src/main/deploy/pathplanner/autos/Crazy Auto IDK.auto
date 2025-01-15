@@ -7,49 +7,49 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Home_Reef1"
+            "pathName": "StartA_ReefE"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Reef1_Processor"
+            "pathName": "ReefE_Processor"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Processor_CoralMark1"
+            "pathName": "Processor_CoralMarkA"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CoralMark1_Reef2"
+            "pathName": "CoralMarkA_ReefC"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Reef2_CoralMark2"
+            "pathName": "ReefC_CoralMarkB"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CoralMark2_Reef3"
+            "pathName": "CoralMarkB_ReefB"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Reef3_CoralMark3"
+            "pathName": "ReefB_CoralMarkC"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CoralMark3_Reef4"
+            "pathName": "CoralMarkC_ReefL"
           }
         }
       ]

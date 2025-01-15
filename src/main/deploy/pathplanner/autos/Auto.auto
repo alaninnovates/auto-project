@@ -7,31 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Home_Reef1"
+            "pathName": "StartA_ReefE"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Reef1_Processor"
+            "pathName": "ReefE_Processor"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Processor_CoralMark1"
+            "pathName": "Processor_CoralMarkA"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "CoralMark1_Reef3"
+            "pathName": "CoralMarkA_ReefB"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Reef3_CoralMark2"
+            "pathName": "ReefB_CoralMarkB"
           }
         }
       ]

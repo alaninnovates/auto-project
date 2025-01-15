@@ -2,10 +2,6 @@
 
 Auto::Auto()
 {
-    // for (auto pathName : m_pathNames)
-    // {
-    //     m_paths.push_back(new AutoPathSegment(pathName));
-    // }
 }
 
 void Auto::AutoStart()
@@ -13,7 +9,7 @@ void Auto::AutoStart()
     m_autoStart = Utils::GetCurTimeMs();
     m_curPathIndex = 0;
     m_curPathStartTime = m_autoStart;
-    // m_curTrajectory = m_paths[m_curPathIndex]->GetTrajectory();
+    m_curTrajectory = m_paths[m_curPathIndex]->GetTrajectory();
 }
 
 void Auto::Periodic()
@@ -41,3 +37,8 @@ void Auto::ShuffleboardInit() {}
 void Auto::ShuffleboardPeriodic() {}
 
 void Auto::SimulationPeriodic() {}
+
+void Auto::AddSegment(std::string position1, std::string position2)
+{
+    m_paths.push_back(new AutoPathSegment(position1 + "_" + position2));
+};

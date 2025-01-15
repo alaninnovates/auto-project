@@ -1,3 +1,4 @@
+#pragma once
 #include <vector>
 #include <string>
 
@@ -18,6 +19,7 @@ public:
     void ShuffleboardInit();
     void ShuffleboardPeriodic();
     void SimulationPeriodic();
+    void AddSegment(std::string position1, std::string position2);
 
 private:
     std::vector<AutoPathSegment *> m_paths;

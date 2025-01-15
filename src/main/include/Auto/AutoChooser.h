@@ -1,16 +1,19 @@
+#pragma once
 #include <vector>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/shuffleboard/Shuffleboard.h>
 
+#include "Auto.h"
 #include "Constants/AutoConstants.h"
 
 class AutoChooser
 {
 
 public:
-    AutoChooser();
+    AutoChooser(Auto &autoObj);
     void ShuffleboardInit();
     void ShuffleboardPeriodic();
+    void Build();
 
 private:
     void AddChooser();
@@ -33,5 +36,6 @@ private:
 
     std::vector<AutoPathPositionChoosers> m_autoChoosers;
     frc::ShuffleboardTab &m_shuffTab = frc::Shuffleboard::GetTab("Auto Chooser");
-    frc::ShuffleboardTab &m_shuffTabIgnore = frc::Shuffleboard::GetTab("Auto Chooser Ignore");
+
+    Auto &m_auto;
 };

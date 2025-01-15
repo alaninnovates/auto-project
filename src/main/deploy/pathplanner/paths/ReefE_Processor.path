@@ -3,29 +3,29 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.8719999999999999,
-        "y": 2.1334999999999993
+        "x": 5.154713114754099,
+        "y": 2.5265368852459016
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.4119998501741926,
-        "y": 3.140757837185271
+        "x": 5.376659667753747,
+        "y": 2.2999344618083843
       },
       "isLocked": false,
-      "linkedName": "coralmark1"
+      "linkedName": "reefE"
     },
     {
       "anchor": {
-        "x": 2.83725,
-        "y": 4.0055
+        "x": 6.327750000000001,
+        "y": 0.5539999999999998
       },
       "prevControl": {
-        "x": 2.5737445733668483,
-        "y": 3.5239604286142363
+        "x": 6.152303864912569,
+        "y": 0.7320973152040269
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "reef3"
+      "linkedName": "processor"
     }
   ],
   "rotationTargets": [],
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 179.65745276258426
+    "rotation": 90.0
   },
   "reversed": false,
   "folder": null,
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 178.86142532294906
+    "rotation": -59.99999999999999
   },
   "useDefaultConstraints": true
 }

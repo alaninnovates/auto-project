@@ -4,6 +4,8 @@
 namespace AutoConstants
 {
     const pathplanner::RobotConfig ROBOT_CONFIG = pathplanner::RobotConfig::fromGUISettings();
+    const int MAX_AUTO_POSITIONS = 10;
+
     enum ReefLevel
     {
         LNONE,
@@ -47,24 +49,24 @@ namespace AutoConstants
 
     const std::map<std::string, AutoPosition> AutoPositionNames = {
         {"None", NONE},
-        {"Start A", START_A},
-        {"Start B", START_B},
-        {"Start C", START_C},
+        {"StartA", START_A},
+        {"StartB", START_B},
+        {"StartC", START_C},
         {"Processor", PROCESSOR},
-        {"Coral Mark A", CORAL_MARK_A},
-        {"Coral Mark B", CORAL_MARK_B},
-        {"Coral Mark C", CORAL_MARK_C},
-        {"Reef A", REEF_A},
-        {"Reef B", REEF_B},
-        {"Reef C", REEF_C},
-        {"Reef D", REEF_D},
-        {"Reef E", REEF_E},
-        {"Reef F", REEF_F},
-        {"Reef G", REEF_G},
-        {"Reef H", REEF_H},
-        {"Reef I", REEF_I},
-        {"Reef J", REEF_J},
-        {"Reef K", REEF_K},
-        {"Reef L", REEF_L},
+        {"CoralMarkA", CORAL_MARK_A},
+        {"CoralMarkB", CORAL_MARK_B},
+        {"CoralMarkC", CORAL_MARK_C},
+        {"ReefA", REEF_A},
+        {"ReefB", REEF_B},
+        {"ReefC", REEF_C},
+        {"ReefD", REEF_D},
+        {"ReefE", REEF_E},
+        {"ReefF", REEF_F},
+        {"ReefG", REEF_G},
+        {"ReefH", REEF_H},
+        {"ReefI", REEF_I},
+        {"ReefJ", REEF_J},
+        {"ReefK", REEF_K},
+        {"ReefL", REEF_L},
     };
 }
