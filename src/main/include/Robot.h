@@ -31,5 +31,4 @@ public:
 private:
   Auto m_auto;
   AutoChooser m_autoChooser;
-  frc::Timer m_timer;
 };

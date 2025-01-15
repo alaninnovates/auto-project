@@ -5,18 +5,15 @@
 #include "Robot.h"
 
 #include <frc/smartdashboard/SmartDashboard.h>
-#include <wpi/print.h>
 
 Robot::Robot() : m_auto{}, m_autoChooser{} {}
 
 void Robot::RobotPeriodic()
 {
-  frc::SmartDashboard::PutNumber("Timer", m_timer.Get().to<double>());
 }
 
 void Robot::AutonomousInit()
 {
-  m_timer.Start();
   m_auto.AutoStart();
 }
 
