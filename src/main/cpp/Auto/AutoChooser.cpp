@@ -15,7 +15,7 @@ void AutoChooser::ShuffleboardPeriodic()
     for (size_t i = 0; i < m_autoChoosers.size(); i++)
     {
         m_autoChoosers.at(i).positionWidget.WithPosition(0, i);
-        if (IsReefPosition(AutoConstants::AutoPositionNames.at(m_autoChoosers.at(i).positionChooser.GetSelected())))
+        if (IsReefPosition(AutoConstants::AutoPositionNames.at(m_autoChoosers.at(i).positionChooser->GetSelected())))
         {
             m_autoChoosers.at(i).reefWidget.WithPosition(1, i);
         }
@@ -24,7 +24,7 @@ void AutoChooser::ShuffleboardPeriodic()
             // todo: hide widget?
         }
     }
-    if (m_autoChoosers.size() > 1 && m_autoChoosers.at(m_autoChoosers.size() - 2).positionChooser.GetSelected() != "None")
+    if (m_autoChoosers.size() > 1 && m_autoChoosers.at(m_autoChoosers.size() - 2).positionChooser->GetSelected() != "None")
     {
         AddChooser();
     }
@@ -32,22 +32,22 @@ void AutoChooser::ShuffleboardPeriodic()
 
 void AutoChooser::AddChooser()
 {
-    frc::SendableChooser<std::string> posChooser;
-    posChooser.SetDefaultOption("None", "None");
+    std::unique_ptr<frc::SendableChooser<std::string>> posChooser = std::make_unique<frc::SendableChooser<std::string>>();
+    posChooser->SetDefaultOption("None", "None");
     for (auto const &pair : AutoConstants::AutoPositionNames)
     {
-        posChooser.AddOption(pair.first, pair.first);
+        posChooser->AddOption(pair.first, pair.first);
     }
-    frc::SimpleWidget &posWidget = m_shuffTab.Add("Position" + std::to_string(m_autoChoosers.size() + 1), &posChooser)
+    frc::SimpleWidget &posWidget = m_shuffTab.Add("Position" + std::to_string(m_autoChoosers.size() + 1), posChooser.get())
                                        .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
-    frc::SendableChooser<std::string> reefChooser;
-    reefChooser.SetDefaultOption("None", "None");
+    std::unique_ptr<frc::SendableChooser<std::string>> reefChooser = std::make_unique<frc::SendableChooser<std::string>>();
+    reefChooser->SetDefaultOption("None", "None");
     for (auto const &pair : AutoConstants::ReefLevelNames)
     {
-        reefChooser.AddOption(pair.first, pair.first);
+        reefChooser->AddOption(pair.first, pair.first);
     }
-    frc::SimpleWidget &reefWidget = m_shuffTab.Add("ReefLevel" + std::to_string(m_autoChoosers.size() + 1), &reefChooser)
+    frc::SimpleWidget &reefWidget = m_shuffTab.Add("ReefLevel" + std::to_string(m_autoChoosers.size() + 1), reefChooser.get())
                                         .WithWidget(frc::BuiltInWidgets::kComboBoxChooser);
 
     m_autoChoosers.push_back(AutoPathPositionChoosers(std::move(posChooser), posWidget, std::move(reefChooser), reefWidget));

@@ -18,13 +18,13 @@ private:
 
     struct AutoPathPositionChoosers
     {
-        frc::SendableChooser<std::string> positionChooser;
+        std::unique_ptr<frc::SendableChooser<std::string>> positionChooser;
         frc::SimpleWidget &positionWidget;
-        frc::SendableChooser<std::string> reefChooser;
+        std::unique_ptr<frc::SendableChooser<std::string>> reefChooser;
         frc::SimpleWidget &reefWidget;
 
-        AutoPathPositionChoosers(frc::SendableChooser<std::string> posChooser, frc::SimpleWidget &posWidget,
-                                 frc::SendableChooser<std::string> reefChooser, frc::SimpleWidget &reefWidget)
+        AutoPathPositionChoosers(std::unique_ptr<frc::SendableChooser<std::string>> posChooser, frc::SimpleWidget &posWidget,
+                                 std::unique_ptr<frc::SendableChooser<std::string>> reefChooser, frc::SimpleWidget &reefWidget)
             : positionChooser(std::move(posChooser)), positionWidget(posWidget),
               reefChooser(std::move(reefChooser)), reefWidget(reefWidget)
         {
