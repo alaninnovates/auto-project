@@ -7,7 +7,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 #include <wpi/print.h>
 
-Robot::Robot() : m_auto{} {}
+Robot::Robot() : m_auto{}, m_autoChooser{} {}
 
 void Robot::RobotPeriodic()
 {
@@ -29,9 +29,15 @@ void Robot::TeleopInit() {}
 
 void Robot::TeleopPeriodic() {}
 
-void Robot::DisabledInit() {}
+void Robot::DisabledInit()
+{
+  m_autoChooser.ShuffleboardInit();
+}
 
-void Robot::DisabledPeriodic() {}
+void Robot::DisabledPeriodic()
+{
+  m_autoChooser.ShuffleboardPeriodic();
+}
 
 void Robot::TestInit() {}
 

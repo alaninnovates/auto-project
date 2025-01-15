@@ -2,10 +2,10 @@
 
 Auto::Auto()
 {
-    for (auto pathName : m_pathNames)
-    {
-        m_paths.push_back(new AutoPathSegment(pathName));
-    }
+    // for (auto pathName : m_pathNames)
+    // {
+    //     m_paths.push_back(new AutoPathSegment(pathName));
+    // }
 }
 
 void Auto::AutoStart()
@@ -13,7 +13,7 @@ void Auto::AutoStart()
     m_autoStart = Utils::GetCurTimeMs();
     m_curPathIndex = 0;
     m_curPathStartTime = m_autoStart;
-    m_curTrajectory = m_paths[m_curPathIndex]->GetTrajectory();
+    // m_curTrajectory = m_paths[m_curPathIndex]->GetTrajectory();
 }
 
 void Auto::Periodic()

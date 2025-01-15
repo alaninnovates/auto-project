@@ -10,6 +10,7 @@
 #include <frc/smartdashboard/SmartDashboard.h>
 
 #include "Auto/Auto.h"
+#include "Auto/AutoChooser.h"
 
 class Robot : public frc::TimedRobot
 {
@@ -29,5 +30,6 @@ public:
 
 private:
   Auto m_auto;
+  AutoChooser m_autoChooser;
   frc::Timer m_timer;
 };
