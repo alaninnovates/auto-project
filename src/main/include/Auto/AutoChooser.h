@@ -19,12 +19,12 @@ private:
     struct AutoPathPositionChoosers
     {
         std::unique_ptr<frc::SendableChooser<std::string>> positionChooser;
-        frc::SimpleWidget &positionWidget;
+        frc::ComplexWidget &positionWidget;
         std::unique_ptr<frc::SendableChooser<std::string>> reefChooser;
-        frc::SimpleWidget &reefWidget;
+        frc::ComplexWidget &reefWidget;
 
-        AutoPathPositionChoosers(std::unique_ptr<frc::SendableChooser<std::string>> posChooser, frc::SimpleWidget &posWidget,
-                                 std::unique_ptr<frc::SendableChooser<std::string>> reefChooser, frc::SimpleWidget &reefWidget)
+        AutoPathPositionChoosers(std::unique_ptr<frc::SendableChooser<std::string>> posChooser, frc::ComplexWidget &posWidget,
+                                 std::unique_ptr<frc::SendableChooser<std::string>> reefChooser, frc::ComplexWidget &reefWidget)
             : positionChooser(std::move(posChooser)), positionWidget(posWidget),
               reefChooser(std::move(reefChooser)), reefWidget(reefWidget)
         {
@@ -33,4 +33,5 @@ private:
 
     std::vector<AutoPathPositionChoosers> m_autoChoosers;
     frc::ShuffleboardTab &m_shuffTab = frc::Shuffleboard::GetTab("Auto Chooser");
+    frc::ShuffleboardTab &m_shuffTabIgnore = frc::Shuffleboard::GetTab("Auto Chooser Ignore");
 };
