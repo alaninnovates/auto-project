@@ -24,7 +24,7 @@ void AutoChooser::ShuffleboardPeriodic()
     //         m_autoChoosers.at(i).reefWidget.WithPosition(i, 100);
     //     }
     // }
-    if (m_autoChoosers.size() > 1 && m_autoChoosers.at(m_autoChoosers.size() - 1).positionChooser->GetSelected() != "None")
+    if (m_autoChoosers.at(m_autoChoosers.size() - 1).positionChooser->GetSelected() != "None")
     {
         AddChooser();
     }
