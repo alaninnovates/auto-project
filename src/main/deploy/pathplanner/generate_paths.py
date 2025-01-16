@@ -52,7 +52,7 @@ base_json = json.loads(
 """
 )
 
-generated_paths_dir = "generated/paths"
+generated_paths_dir = "paths"
 
 # find every possible permutation of two links
 permutations = []
@@ -63,15 +63,36 @@ for link1 in links:
 
 if not os.path.exists(generated_paths_dir):
     os.makedirs(generated_paths_dir)
+else:
+    for file in os.listdir(generated_paths_dir):
+        os.remove(os.path.join(generated_paths_dir, file))
+
+
+# find an anchor that is 20% of the distance from anchor1 to anchor2, and on the line between them
+def get_twenty_percent_path(anchor1, anchor2):
+    try:
+        slope = (anchor2["y"] - anchor1["y"]) / (anchor2["x"] - anchor1["x"])
+    except ZeroDivisionError:
+        slope = 0
+    y_int = anchor1["y"] - slope * anchor1["x"]
+    dx = anchor2["x"] - anchor1["x"]
+    new_x = 0.2 * dx + anchor1["x"]
+    new_y = slope * new_x + y_int
+    return {"x": new_x, "y": new_y}
+
 
 for i, (link1, link2) in enumerate(permutations):
     path = base_json.copy()
-    path["waypoints"][0]["anchor"] = links[link1]["anchor"]
+    path["waypoints"][0]["anchor"] = links[link1]["anchor"].copy()
     path["waypoints"][0]["linkedName"] = link1
-    path["waypoints"][0]["nextControl"] = links[link2]["anchor"]
-    path["waypoints"][1]["anchor"] = links[link2]["anchor"]
+    path["waypoints"][0]["nextControl"] = get_twenty_percent_path(
+        links[link1]["anchor"].copy(), links[link2]["anchor"].copy()
+    ).copy()
+    path["waypoints"][1]["anchor"] = links[link2]["anchor"].copy()
     path["waypoints"][1]["linkedName"] = link2
-    path["waypoints"][1]["prevControl"] = links[link1]["anchor"]
+    path["waypoints"][1]["prevControl"] = get_twenty_percent_path(
+        links[link2]["anchor"].copy(), links[link1]["anchor"].copy()
+    ).copy()
     path["idealStartingState"]["rotation"] = links[link1]["rotation"]
     path["goalEndState"]["rotation"] = links[link2]["rotation"]
 

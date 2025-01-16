@@ -1,54 +1,54 @@
 {
-  "version": "2025.0",
-  "waypoints": [
-    {
-      "anchor": {
-        "x": 2.817110655737705,
-        "y": 4.0055
-      },
-      "prevControl": null,
-      "nextControl": {
-        "x": 2.1328158996458764,
-        "y": 4.818603409885064
-      },
-      "isLocked": false,
-      "linkedName": "reefB"
+    "version": "2025.0",
+    "waypoints": [
+        {
+            "anchor": {
+                "x": 2.817110655737705,
+                "y": 4.0055
+            },
+            "prevControl": null,
+            "nextControl": {
+                "x": 2.6085245901639347,
+                "y": 4.299502459016393
+            },
+            "isLocked": false,
+            "linkedName": "ReefB"
+        },
+        {
+            "anchor": {
+                "x": 1.7741803278688524,
+                "y": 5.475512295081967
+            },
+            "prevControl": {
+                "x": 1.982766393442623,
+                "y": 5.181509836065573
+            },
+            "nextControl": null,
+            "isLocked": false,
+            "linkedName": "CoralMarkC"
+        }
+    ],
+    "rotationTargets": [],
+    "constraintZones": [],
+    "pointTowardsZones": [],
+    "eventMarkers": [],
+    "globalConstraints": {
+        "maxVelocity": 3.0,
+        "maxAcceleration": 3.0,
+        "maxAngularVelocity": 540.0,
+        "maxAngularAcceleration": 720.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
     },
-    {
-      "anchor": {
-        "x": 1.7741803278688524,
-        "y": 5.475512295081967
-      },
-      "prevControl": {
-        "x": 2.4096581767843728,
-        "y": 4.548370297351461
-      },
-      "nextControl": null,
-      "isLocked": false,
-      "linkedName": "coralmarkC"
-    }
-  ],
-  "rotationTargets": [],
-  "constraintZones": [],
-  "pointTowardsZones": [],
-  "eventMarkers": [],
-  "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 3.0,
-    "maxAngularVelocity": 540.0,
-    "maxAngularAcceleration": 720.0,
-    "nominalVoltage": 12.0,
-    "unlimited": false
-  },
-  "goalEndState": {
-    "velocity": 0,
-    "rotation": 138.0
-  },
-  "reversed": false,
-  "folder": null,
-  "idealStartingState": {
-    "velocity": 0,
-    "rotation": 180.0
-  },
-  "useDefaultConstraints": true
+    "goalEndState": {
+        "velocity": 0,
+        "rotation": 138.0
+    },
+    "reversed": false,
+    "folder": null,
+    "idealStartingState": {
+        "velocity": 0,
+        "rotation": 180.0
+    },
+    "useDefaultConstraints": true
 }
