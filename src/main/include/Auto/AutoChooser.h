@@ -2,8 +2,10 @@
 #include <vector>
 #include <frc/smartdashboard/SendableChooser.h>
 #include <frc/shuffleboard/Shuffleboard.h>
+#include <iostream>
 
 #include "Auto.h"
+#include "AutoParser.h"
 #include "Constants/AutoConstants.h"
 
 class AutoChooser
@@ -16,7 +18,7 @@ public:
     void Build();
 
 private:
-    void AddChooser();
+    void AddChooser(std::string defaultPos = "None", std::string defaultReef = "None");
     bool IsReefPosition(AutoConstants::AutoPosition position);
 
     struct AutoPathPositionChoosers
@@ -35,7 +37,11 @@ private:
     };
 
     std::vector<AutoPathPositionChoosers> m_autoChoosers;
+    frc::SendableChooser<std::string> m_defaultAutoSetter;
+    std::string m_prevDefaultAuto;
+
     frc::ShuffleboardTab &m_shuffTab = frc::Shuffleboard::GetTab("Auto Chooser");
+    nt::GenericEntry *m_previewEntry = m_shuffTab.Add("Preview", "").WithSize(10, 1).WithPosition(0, 3).GetEntry();
 
     Auto &m_auto;
 };

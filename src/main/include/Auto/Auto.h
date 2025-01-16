@@ -20,6 +20,7 @@ public:
     void ShuffleboardPeriodic();
     void SimulationPeriodic();
     void AddSegment(std::string position1, std::string position2);
+    void ClearSegments();
 
 private:
     std::vector<AutoPathSegment *> m_paths;

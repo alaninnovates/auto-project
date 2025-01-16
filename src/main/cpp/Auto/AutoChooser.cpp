@@ -10,6 +10,16 @@ void AutoChooser::ShuffleboardInit()
     {
         AddChooser();
     }
+    m_defaultAutoSetter = frc::SendableChooser<std::string>();
+    m_defaultAutoSetter.SetDefaultOption("None", "None");
+    m_defaultAutoSetter.AddOption("Auto", "Auto");
+    m_defaultAutoSetter.AddOption("Crazy Auto IDK", "Crazy Auto IDK");
+    m_shuffTab.Add("Default Auto Select", m_defaultAutoSetter)
+        .WithWidget(frc::BuiltInWidgets::kComboBoxChooser)
+        .WithPosition(4, 2)
+        .WithSize(2, 1);
+    m_defaultAutoSetter.OnChange([this](std::string value)
+                                 { Build(); });
 }
 
 void AutoChooser::ShuffleboardPeriodic()
@@ -33,10 +43,10 @@ void AutoChooser::ShuffleboardPeriodic()
     // }
 }
 
-void AutoChooser::AddChooser()
+void AutoChooser::AddChooser(std::string defaultPos, std::string defaultReef)
 {
     std::unique_ptr<frc::SendableChooser<std::string>> posChooser = std::make_unique<frc::SendableChooser<std::string>>();
-    posChooser->SetDefaultOption("None", "None");
+    posChooser->SetDefaultOption(defaultPos, defaultPos);
     for (auto const &pair : AutoConstants::AutoPositionNames)
     {
         posChooser->AddOption(pair.first, pair.first);
@@ -44,14 +54,16 @@ void AutoChooser::AddChooser()
     frc::ComplexWidget &posWidget = m_shuffTab.Add("Position" + std::to_string(m_autoChoosers.size() + 1), *posChooser)
                                         .WithWidget(frc::BuiltInWidgets::kComboBoxChooser)
                                         .WithPosition(m_autoChoosers.size(), 0);
+    posChooser->OnChange([this](std::string value)
+                         { Build(); });
 
     std::unique_ptr<frc::SendableChooser<std::string>> reefChooser = std::make_unique<frc::SendableChooser<std::string>>();
-    reefChooser->SetDefaultOption("None", "None");
+    reefChooser->SetDefaultOption(defaultReef, defaultReef);
     for (auto const &pair : AutoConstants::ReefLevelNames)
     {
         reefChooser->AddOption(pair.first, pair.first);
     }
-    frc::ComplexWidget &reefWidget = m_shuffTab.Add("ReefLevel" + std::to_string(m_autoChoosers.size() + 1), *reefChooser)
+    frc::ComplexWidget &reefWidget = m_shuffTab.Add("Reef" + std::to_string(m_autoChoosers.size() + 1) + "Level", *reefChooser)
                                          .WithWidget(frc::BuiltInWidgets::kComboBoxChooser)
                                          .WithPosition(m_autoChoosers.size(), 1);
 
@@ -76,14 +88,42 @@ bool AutoChooser::IsReefPosition(AutoConstants::AutoPosition position)
 
 void AutoChooser::Build()
 {
-    for (size_t i = 0; i < m_autoChoosers.size() - 1; i++)
+    m_auto.ClearSegments();
+    std::string previewStr = "";
+    if (m_defaultAutoSetter.GetSelected() != "None")
     {
-        std::string pos = m_autoChoosers.at(i).positionChooser->GetSelected();
-        std::string nextPos = m_autoChoosers.at(i + 1).positionChooser->GetSelected();
-        if (nextPos == "None")
+        std::vector<std::string> pathNames = AutoParser::ParseFile(m_defaultAutoSetter.GetSelected());
+        for (size_t i = 0; i < pathNames.size() - 1; i++)
         {
-            break;
+            std::string leftPosChooser = m_autoChoosers.at(i).positionChooser->GetSelected();
+            std::string rightPosChooser = m_autoChoosers.at(i + 1).positionChooser->GetSelected();
+            std::string leftPos = leftPosChooser == "None" ? pathNames.at(i) : leftPosChooser;
+            std::string rightPos = rightPosChooser == "None" ? pathNames.at(i + 1) : rightPosChooser;
+            previewStr += "(" + std::to_string(i + 1) + ") " + leftPos + " -> ";
+            if (i == pathNames.size() - 2)
+            {
+                previewStr += "(" + std::to_string(i + 2) + ") " + rightPos;
+            }
+            m_auto.AddSegment(leftPos, rightPos);
         }
-        m_auto.AddSegment(pos, nextPos);
     }
+    else
+    {
+        for (size_t i = 0; i < m_autoChoosers.size() - 1; i++)
+        {
+            std::string pos = m_autoChoosers.at(i).positionChooser->GetSelected();
+            std::string nextPos = m_autoChoosers.at(i + 1).positionChooser->GetSelected();
+            if (nextPos == "None")
+            {
+                break;
+            }
+            previewStr += "(" + std::to_string(i + 1) + ") " + pos + " -> ";
+            if (i == m_autoChoosers.size() - 2)
+            {
+                previewStr += "(" + std::to_string(i + 2) + ") " + nextPos;
+            }
+            m_auto.AddSegment(pos, nextPos);
+        }
+    }
+    m_previewEntry->SetString(previewStr);
 }

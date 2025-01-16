@@ -42,3 +42,12 @@ void Auto::AddSegment(std::string position1, std::string position2)
 {
     m_paths.push_back(new AutoPathSegment(position1 + "_" + position2));
 };
+
+void Auto::ClearSegments()
+{
+    for (size_t i = 0; i < m_paths.size(); i++)
+    {
+        delete m_paths.at(i);
+    }
+    m_paths.clear();
+}
