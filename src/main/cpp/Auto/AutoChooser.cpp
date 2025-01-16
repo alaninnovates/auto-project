@@ -115,13 +115,10 @@ void AutoChooser::Build()
             std::string nextPos = m_autoChoosers.at(i + 1).positionChooser->GetSelected();
             if (nextPos == "None")
             {
+                previewStr += "(" + std::to_string(i + 1) + ") " + pos;
                 break;
             }
             previewStr += "(" + std::to_string(i + 1) + ") " + pos + " -> ";
-            if (i == m_autoChoosers.size() - 2)
-            {
-                previewStr += "(" + std::to_string(i + 2) + ") " + nextPos;
-            }
             m_auto.AddSegment(pos, nextPos);
         }
     }
