@@ -14,8 +14,6 @@ void Robot::RobotPeriodic()
 
 void Robot::AutonomousInit()
 {
-  // todo: don't do this it takes a long time to build. just directly start building in autochooser.
-  m_autoChooser.Build();
   m_auto.AutoStart();
 }
 
